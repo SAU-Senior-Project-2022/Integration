@@ -4,6 +4,7 @@
 
 # This is a class which wrapps the twitter API for our project.
 # It has one publicly facing method to post a tweet.
+
 import json, tweepy
 class Twitter:
     def __init__(self, keyFile = "twitterKeys.json"):
@@ -20,6 +21,10 @@ class Twitter:
     def post(self, trainData):
         locationName = trainData["locationName"]
         lat,lon = trainData["lat"], trainData["lon"]
-        link = f'https://www.google.com/maps/search/?api=1&query={int(lat)},{int(lon)}'
+        link = f'https://www.google.com/maps/search/?api=1&query={float(lat)},{float(lon)}'
         tweet = f"{locationName} is at {lat},{lon} {link}"
         self.api.update_status(tweet)
+
+if __name__ == "__main__":
+    twitter = Twitter()
+    twitter.post({"locationName": "Test Location", "lat": "35.0504969", "lon": "-85.0809819"})
