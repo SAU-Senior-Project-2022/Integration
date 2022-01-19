@@ -4,7 +4,7 @@
 
 # This is a class which wrapps the twitter API for our project.
 # It has one publicly facing method to post a tweet.
-import json, requests, os, tweepy
+import json, tweepy
 class Twitter:
     def __init__(self, keyFile = "twitterKeys.json"):
         with open(keyFile) as f:
