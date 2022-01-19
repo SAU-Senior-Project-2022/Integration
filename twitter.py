@@ -21,5 +21,5 @@ class Twitter:
         locationName = trainData["locationName"]
         lat,lon = trainData["lat"], trainData["lon"]
         link = f'https://www.google.com/maps/search/?api=1&query={int(lat)},{int(lon)}'
-        tweet = "The train is at " + locationName + " (" + str(lat) + ", " + str(lon) + ")" + "! " + link
+        tweet = f"{locationName} is at {lat},{lon} {link}"
         self.api.update_status(tweet)
