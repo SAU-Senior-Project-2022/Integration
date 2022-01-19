@@ -1,3 +1,7 @@
+# main.py
+# Authors: Joel Peckham, Andrew Hansbury, Marc Guarino
+# Date: 1/19/2022
+
 from twitter import Twitter
 import json, requests
 
