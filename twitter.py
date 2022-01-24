@@ -6,6 +6,9 @@
 # It has one publicly facing method to post a tweet.
 
 import json, tweepy
+from time import strftime
+from datetime import datetime as dt
+
 class Twitter:
     def __init__(self, keyFile = "twitterKeys.json"):
         with open(keyFile) as f:
@@ -18,13 +21,13 @@ class Twitter:
         self.auth.set_access_token(self.access_token, self.access_token_secret)
         self.api = tweepy.API(self.auth)
         
-    def post(self, trainData):
-        locationName = trainData["locationName"]
-        lat,lon = trainData["lat"], trainData["lon"]
+    def post(self, location, date):
+        dateObj = dt(date['year'], date['month'], date['day'], date['hour'], date['minute'])
+        locationName = location["id"]
+        lat,lon = location["latitude"], location["longitude"]
         link = f'https://www.google.com/maps/search/?api=1&query={float(lat)},{float(lon)}'
-        tweet = f"{locationName} is at {lat},{lon} {link}"
+        tweet = f"Station {locationName} became blocked at {strftime(dateObj.strftime('%I:%M %p'))} on {dateObj.strftime('%m/%d/%Y')}.\n{link}"
         self.api.update_status(tweet)
 
 if __name__ == "__main__":
     twitter = Twitter()
-    twitter.post({"locationName": "Test Location", "lat": "35.0504969", "lon": "-85.0809819"})
