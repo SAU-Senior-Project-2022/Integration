@@ -27,6 +27,7 @@ class Twitter:
         from_zone = tz.tzutc()
         to_zone = tz.tzlocal()
         dateObj = dateObj.replace(tzinfo=from_zone)
+        dateObj = dateObj.astimezone(to_zone)
 
         locationName = location["id"]
         lat,lon = location["latitude"], location["longitude"]
