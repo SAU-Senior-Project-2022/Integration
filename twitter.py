@@ -24,15 +24,15 @@ class Twitter:
         
     def post(self, location, date):
         dateObj = dt(date['year'], date['month'], date['day'], date['hour'], date['minute'])
-        from_zone = tz.tzutc()
-        to_zone = tz.tzlocal()
+        from_zone = tz.gettz('UTC')
+        to_zone = tz.gettz('America/New_York')
         dateObj = dateObj.replace(tzinfo=from_zone)
-        dateObj = dateObj.astimezone(to_zone)
+        east = dateObj.astimezone(to_zone)
 
         locationName = location["id"]
         lat,lon = location["latitude"], location["longitude"]
         link = f'https://www.google.com/maps/search/?api=1&query={float(lat)},{float(lon)}'
-        tweet = f"Station {locationName} became blocked at {strftime(dateObj.strftime('%I:%M %p'))} on {dateObj.strftime('%m/%d/%Y')}.\n{link}"
+        tweet = f"Station {locationName} became blocked at {strftime(east.strftime('%I:%M %p'))} on {east.strftime('%m/%d/%Y')}.\n{link}"
         self.api.update_status(tweet)
 
 if __name__ == "__main__":
