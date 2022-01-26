@@ -29,10 +29,10 @@ class Twitter:
         dateObj = dateObj.replace(tzinfo=from_zone)
         east = dateObj.astimezone(to_zone)
 
-        locationName = location["id"]
+        locationName = location["title"]
         lat,lon = location["latitude"], location["longitude"]
         link = f'https://www.google.com/maps/search/?api=1&query={float(lat)},{float(lon)}'
-        tweet = f"Station {locationName} became blocked at {strftime(east.strftime('%I:%M %p'))} on {east.strftime('%m/%d/%Y')}.\n{link}"
+        tweet = f"The {locationName} crossing became blocked at {strftime(east.strftime('%I:%M %p'))} on {east.strftime('%m/%d/%Y')}.\n{link}"
         self.api.update_status(tweet)
 
 if __name__ == "__main__":
