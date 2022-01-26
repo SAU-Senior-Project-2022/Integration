@@ -1,1 +1,0 @@
-/usr/bin/python3 /home/andrew/Integration/main.py && (sleep 20; /usr/bin/python3 /home/andrew/Integration/main.py)

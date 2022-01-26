@@ -34,7 +34,7 @@ for station in stationStates:
             location = api.getLocation(station_id)
             twitter.post(location, station['date'])
             print(f"Posted tweet for station {station_id}")
-            stateHistory.update({station_id: str(station["state"])})
+        stateHistory.update({station_id: str(station["state"])})
 
 print(stateHistory)
 with open("stateHistory.json", "w") as f:
