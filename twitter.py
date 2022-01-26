@@ -8,6 +8,7 @@
 import json, tweepy
 from time import strftime
 from datetime import datetime as dt
+from dateutil import tz
 
 class Twitter:
     def __init__(self, keyFile = "twitterKeys.json"):
@@ -23,6 +24,10 @@ class Twitter:
         
     def post(self, location, date):
         dateObj = dt(date['year'], date['month'], date['day'], date['hour'], date['minute'])
+        from_zone = tz.tzutc()
+        to_zone = tz.tzlocal()
+        dateObj = dateObj.replace(tzinfo=from_zone)
+
         locationName = location["id"]
         lat,lon = location["latitude"], location["longitude"]
         link = f'https://www.google.com/maps/search/?api=1&query={float(lat)},{float(lon)}'
