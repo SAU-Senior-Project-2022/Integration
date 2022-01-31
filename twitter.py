@@ -14,12 +14,8 @@ class Twitter:
     def __init__(self, keyFile = "twitterKeys.json"):
         with open(keyFile) as f:
             keys = json.load(f)
-        self.consumer_key = keys["consumer_key"]
-        self.consumer_secret = keys["consumer_secret"]
-        self.access_token = keys["access_token"]
-        self.access_token_secret = keys["access_token_secret"]
-        self.auth = tweepy.OAuthHandler(self.consumer_key, self.consumer_secret)
-        self.auth.set_access_token(self.access_token, self.access_token_secret)
+        self.auth = tweepy.OAuthHandler(keys["consumer_key"], keys["consumer_secret"])
+        self.auth.set_access_token(keys["access_token"], keys["access_token_secret"])
         self.api = tweepy.API(self.auth)
         
     def post(self, location, date):

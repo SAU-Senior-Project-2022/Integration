@@ -24,10 +24,13 @@ if not os.path.exists("stateHistory.json"):
 with open("stateHistory.json", 'r') as f:
     stateHistory = dict(json.load(f))
 
+#Iterate through each station.
 for station in stationStates:
+    #If we haven't seen this station, we'll add it to our history file and ignore it.
     station_id = str(station["station_id"])
     if station_id not in stateHistory:
         stateHistory.update({station_id: str(station["state"])})
+    #Otherwise, we'll check if the state has changed.
     else:
         # If the state has changed to "blocked", post a tweet.
         if int(station["state"]) > int(stateHistory[station_id]):
