@@ -11,5 +11,9 @@ Twitter Integration for Train App.
 https://twitter.com/TrainCrossings
 
 # Deployment Requirements
-- Api Keys from Twitter API
-- ...
+- Api Keys from [Twitter API](https://developer.twitter.com/en/docs/twitter-api/tools-and-libraries/v2)
+    - These should be placed in a file called `twitterKeys.json` alongside `main.py`
+    - Example structure: `{"consumer_key" : "", "consumer_secret" : "", "access_token" : "", "access_token_secret" : ""}`
+- [Tweepy Python Library](https://docs.tweepy.org/en/stable/)
+- [Dateutil Python Library](https://dateutil.readthedocs.io/en/stable/)
+- Add `cronjob.sh` to your crontab with * * * * * to run every minute.
