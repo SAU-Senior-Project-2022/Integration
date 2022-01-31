@@ -17,3 +17,4 @@ https://twitter.com/TrainCrossings
 - [Tweepy Python Library](https://docs.tweepy.org/en/stable/)
 - [Dateutil Python Library](https://dateutil.readthedocs.io/en/stable/)
 - Add `cronjob.sh` to your crontab with * * * * * to run every minute.
+    - Modify the first line of `cronjob.sh` to reflect the path of your installation.
