@@ -23,7 +23,7 @@ class Twitter:
         self.api = tweepy.API(self.auth)
         
     def post(self, location, date):
-        dateObj = dt(date['year'], date['month'], date['day'], date['hour'], date['minute'])
+        dateObj = dt.fromtimestamp(date)
         from_zone = tz.gettz('UTC')
         to_zone = tz.gettz('America/New_York')
         dateObj = dateObj.replace(tzinfo=from_zone)
